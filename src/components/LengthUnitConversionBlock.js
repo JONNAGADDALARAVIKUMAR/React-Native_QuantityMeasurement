@@ -8,29 +8,35 @@ import {
 import unitConversionBlockStyles from '../styles/unitConversionBlockStyles'
 export default class LengthUnitConversionBlock extends Component {
     state = {
-        selectedInputUnit: 'm',
-        selectedOutputUnit: 'm',
+        selectedInputUnit: '1',
+        selectedOutputUnit: '1',
         enteredValue: '1',
-        outputValue : 'output',
+        outputValue : '1',
     } 
     inputUnitHandler = async (selectedInputUnitType) => {
         await this.setState({
             selectedInputUnit: selectedInputUnitType
         })
-        console.log(this.state.selectedInputUnit);
+        console.log(selectedInputUnit);
     }
 
     outputUnitHandler = async (selectedOutputUnitType) => {
         await this.setState({
             selectedOutputUnit: selectedOutputUnitType
         })
-        console.log(this.state.selectedOutputUnit);
+        
     }
     inputValueHandler = async (value) => {
         await this.setState({
             enteredValue: value
         })
-        console.log(this.state.enteredValue);
+        var inutUnit = parseFloat(this.state.selectedInputUnit);
+        var outputUnit = parseFloat(this.state.selectedOutputUnit);
+        var valueEntered = parseFloat(this.state.enteredValue);
+        this.setState({
+            outputValue: (valueEntered * inutUnit) / outputUnit
+        })
+        
     }
     render() {
         return (
@@ -48,14 +54,16 @@ export default class LengthUnitConversionBlock extends Component {
                             selectedValue = {this.state.selectedInputUnit}
                             onValueChange = {(selectedUnit) => this.inputUnitHandler(selectedUnit)}
                         >
-                            <Picker.Item label = 'CM' value = 'cm'/>
-                            <Picker.Item label = 'Meter' value = 'm'/>
-                            <Picker.Item label = 'Inch' value = 'inch'/>
-                            <Picker.Item label = 'Foot' value = 'foot'/>
-                            <Picker.Item label = 'Yard' value = 'yard'/>
+                            <Picker.Item label = 'Milli Meter' value = '1' key = '1'/>
+                            <Picker.Item label = 'Centi Meter' value = '10' key = '2'/>
+                            <Picker.Item label = 'Meter' value = '1000' key = '3'/>
+                            <Picker.Item label = 'Kilo Meter' value = '1000000' key = '4'/>
+                            <Picker.Item label = 'Inch' value = '25.4' key = '5'/>
+                            <Picker.Item label = 'Foot' value = '304.8' key = '6'/>
+                            <Picker.Item label = 'Yard' value = '914.4' key = '7'/>
                         </Picker>
                     </View>
-                    <TextInput placeholder = {'Enter Input'}
+                    <TextInput placeholder = {'1'}
                         style = {[unitConversionBlockStyles.units_Box, unitConversionBlockStyles.input_box]}
                         onChangeText = {(value) => this.inputValueHandler(value)}
                                 // value = {}
@@ -74,14 +82,16 @@ export default class LengthUnitConversionBlock extends Component {
                             selectedValue = {this.state.selectedOutputUnit}
                             onValueChange = {(selectedUnit) => this.outputUnitHandler(selectedUnit)}
                         >
-                            <Picker.Item label = 'CM' value = 'cm'/>
-                            <Picker.Item label = 'Meter' value = 'm'/>
-                            <Picker.Item label = 'Inch' value = 'inch'/>
-                            <Picker.Item label = 'Foot' value = 'foot'/>
-                            <Picker.Item label = 'Yard' value = 'yard'/>
+                            <Picker.Item label = 'Milli Meter' value = '1' key = '1'/>
+                            <Picker.Item label = 'Centi Meter' value = '10' key = '2'/>
+                            <Picker.Item label = 'Meter' value = '1000' key = '3'/>
+                            <Picker.Item label = 'Kilo Meter' value = '1000000' key = '4'/>
+                            <Picker.Item label = 'Inch' value = '25.4' key = '5'/>
+                            <Picker.Item label = 'Foot' value = '304.8' key = '6'/>
+                            <Picker.Item label = 'Yard' value = '914.4' key = '7'/>
                         </Picker>
                     </View>
-                    <TextInput placeholder = {this.state.outputValue}
+                    <TextInput value = {this.state.outputValue.toString()}
                             editable = {false}
                         style = {[unitConversionBlockStyles.units_Box, unitConversionBlockStyles.output_box]}
                     />   

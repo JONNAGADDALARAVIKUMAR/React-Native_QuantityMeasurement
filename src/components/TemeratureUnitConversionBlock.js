@@ -1,36 +1,66 @@
 import React, {Component} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  Picker
-} from 'react-native';
+import {View, Text, TextInput, Picker} from 'react-native';
 import unitConversionBlockStyles from '../styles/unitConversionBlockStyles'
+import UnitObjects from './UnitObjects'
 export default class TemeratureUnitConversionBlock extends Component {
     state = {
-        selectedInputUnit: 'c',
-        selectedOutputUnit: 'c',
+        selectedInputUnit: 'C',
+        selectedOutputUnit: 'C',
         enteredValue: '1',
-        outputValue : 'output',
+        outputValue : '1',
     } 
     inputUnitHandler = async (selectedInputUnitType) => {
         await this.setState({
             selectedInputUnit: selectedInputUnitType
         })
-        console.log(this.state.selectedInputUnit);
+        console.log(selectedInputUnit);
     }
 
     outputUnitHandler = async (selectedOutputUnitType) => {
         await this.setState({
             selectedOutputUnit: selectedOutputUnitType
         })
-        console.log(this.state.selectedOutputUnit);
+        console.log(selectedOutputUnit);
     }
     inputValueHandler = async (value) => {
         await this.setState({
             enteredValue: value
         })
-        console.log(this.state.enteredValue);
+        var valueEntered = parseFloat(this.state.enteredValue);
+        if(this.state.selectedInputUnit === 'C' && this.state.selectedOutputUnit === 'F') {
+            this.setState({
+                outputValue: (valueEntered * 1.8) + 32
+            })
+        }
+        else if(this.state.selectedInputUnit === 'C' && this.state.selectedOutputUnit === 'K') {
+            this.setState({
+                outputValue: valueEntered + 273.15
+            })
+        }
+        else if(this.state.selectedInputUnit === 'F' && this.state.selectedOutputUnit === 'C') {
+            this.setState({
+                outputValue: (valueEntered - 32) * ( 5 / 9)
+            })
+        }
+        else if(this.state.selectedInputUnit === 'F' && this.state.selectedOutputUnit === 'K') {
+            this.setState({
+                outputValue: (valueEntered - 32) * (5 / 9) + 273.15
+            })
+        }
+        else if(this.state.selectedInputUnit === 'K' && this.state.selectedOutputUnit === 'C') {
+            this.setState({
+                outputValue: valueEntered - 273.15 
+            })
+        }
+        else if(this.state.selectedInputUnit === 'K' && this.state.selectedOutputUnit === 'F') {
+            this.setState({
+                outputValue: (valueEntered - 273.15 ) * (9 / 5) + 32
+            })
+        }
+        else if(this.state.selectedInputUnit === this.state.selectedOutputUnit)
+        this.setState({
+            outputValue: valueEntered
+        })
     }
     render() {
         return (
@@ -48,9 +78,9 @@ export default class TemeratureUnitConversionBlock extends Component {
                             selectedValue = {this.state.selectedInputUnit}
                             onValueChange = {(selectedUnit) => this.inputUnitHandler(selectedUnit)}
                         >
-                            <Picker.Item label = 'Celsius' value = 'c'/>
-                            <Picker.Item label = 'FahrenHeit' value = 'f'/>
-                            <Picker.Item label = 'Kelvin' value = 'k'/>
+                            <Picker.Item label = 'Celsius' value = 'C'/>
+                            <Picker.Item label = 'FahrenHeit' value = 'F'/>
+                            <Picker.Item label = 'Kelvin' value = 'K'/>
                         </Picker>
                     </View>
                     <TextInput placeholder = {'Enter Input'}
@@ -72,12 +102,12 @@ export default class TemeratureUnitConversionBlock extends Component {
                             selectedValue = {this.state.selectedOutputUnit}
                             onValueChange = {(selectedUnit) => this.outputUnitHandler(selectedUnit)}
                         >
-                            <Picker.Item label = 'Celsius' value = 'c'/>
-                            <Picker.Item label = 'FahrenHeit' value = 'f'/>
-                            <Picker.Item label = 'Kelvin' value = 'k'/>
+                            <Picker.Item label = 'Celsius' value = 'C'/>
+                            <Picker.Item label = 'FahrenHeit' value = 'F'/>
+                            <Picker.Item label = 'Kelvin' value = 'K'/>
                         </Picker>
                     </View>
-                    <TextInput placeholder = {this.state.outputValue}
+                    <TextInput value = {this.state.outputValue.toString()}
                             editable = {false}
                             style = {[unitConversionBlockStyles.units_Box, unitConversionBlockStyles.output_box]}
                     />   

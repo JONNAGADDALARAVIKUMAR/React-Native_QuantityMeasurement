@@ -8,29 +8,34 @@ import {
 import unitConversionBlockStyles from '../styles/unitConversionBlockStyles'
 export default class TemeratureUnitConversionBlock extends Component {
     state = {
-        selectedInputUnit: 'l',
-        selectedOutputUnit: 'l',
+        selectedInputUnit: '1000',
+        selectedOutputUnit: '1000',
         enteredValue: '1',
-        outputValue : 'output',
+        outputValue : '1',
     } 
     inputUnitHandler = async (selectedInputUnitType) => {
         await this.setState({
             selectedInputUnit: selectedInputUnitType
         })
-        console.log(this.state.selectedInputUnit);
+        
     }
 
     outputUnitHandler = async (selectedOutputUnitType) => {
         await this.setState({
             selectedOutputUnit: selectedOutputUnitType
         })
-        console.log(this.state.selectedOutputUnit);
+        
     }
     inputValueHandler = async (value) => {
         await this.setState({
             enteredValue: value
         })
-        console.log(this.state.enteredValue);
+        var inutUnit = parseFloat(this.state.selectedInputUnit);
+        var outputUnit = parseFloat(this.state.selectedOutputUnit);
+        var valueEntered = parseFloat(this.state.enteredValue);
+        this.setState({
+            outputValue: (valueEntered * inutUnit) / outputUnit
+        })
     }
     render() {
         return (
@@ -48,9 +53,12 @@ export default class TemeratureUnitConversionBlock extends Component {
                             selectedValue = {this.state.selectedInputUnit}
                             onValueChange = {(selectedUnit) => this.inputUnitHandler(selectedUnit)}
                         >
-                            <Picker.Item label = 'ML' value = 'm'/>
-                            <Picker.Item label = 'LITRE' value = 'l'/>
-                            <Picker.Item label = 'GALLON' value = 'g'/>
+                            <Picker.Item label = 'Milli Litre' value = '1'/>
+                            <Picker.Item label = 'Litre' value = '1000'/>
+                            <Picker.Item label = 'Gallon' value = '3785'/>
+                            <Picker.Item label = 'Cubic Meter' value = '1000000'/>
+                            <Picker.Item label = 'Cubic Centi Meter' value = '1.0'/>
+                            <Picker.Item label = 'Cubic Mill Miter' value = '0.001'/>
                         </Picker>
                     </View>
                     <TextInput placeholder = {'Enter Input'}
@@ -71,9 +79,12 @@ export default class TemeratureUnitConversionBlock extends Component {
                             selectedValue = {this.state.selectedOutputUnit}
                             onValueChange = {(selectedUnit) => this.outputUnitHandler(selectedUnit)}
                         >
-                            <Picker.Item label = 'ML' value = 'm'/>
-                            <Picker.Item label = 'LITRE' value = 'l'/>
-                            <Picker.Item label = 'GALLON' value = 'g'/>
+                            <Picker.Item label = 'Milli Litre' value = '1'/>
+                            <Picker.Item label = 'Litre' value = '1000'/>
+                            <Picker.Item label = 'Gallon' value = '3785'/>
+                            <Picker.Item label = 'Cubic Meter' value = '1000000'/>
+                            <Picker.Item label = 'Cubic Centi Meter' value = '1.0'/>
+                            <Picker.Item label = 'Cubic Mill Miter' value = '0.001'/>
                         </Picker>
                     </View>
                     <TextInput placeholder = {this.state.outputValue}
