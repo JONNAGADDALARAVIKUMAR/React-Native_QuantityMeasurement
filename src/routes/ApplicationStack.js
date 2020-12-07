@@ -3,20 +3,20 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LengthScreen from '../components/LengthScreen';
 import TemparatureScreen from '../components/TemperatureScreen';
-import VolumeeScreen from '../components/VolumeScreen';
+import VolumeScreen from '../components/VolumeScreen';
 
 const Stack = createStackNavigator();
 
-const HomeStack = () => {
+const ApplicationStack = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName = "Length" screenOptions = {{headerShown : true}}>
+            <Stack.Navigator initialRouteName = "Length" screenOptions = {{headerShown : false}}>
                 <Stack.Screen name = "Length" component = {LengthScreen}/>
                 <Stack.Screen name = "Temperature" component = {TemparatureScreen}/>
-                <Stack.Screen name = "Volume" component = {VolumeeScreen}/>
+                <Stack.Screen name = "Volume" component = {VolumeScreen}/>
             </Stack.Navigator>
         </NavigationContainer>
     )
 }
 
-export default HomeStack;
+export default ApplicationStack;

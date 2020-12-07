@@ -1,4 +1,3 @@
-import React from 'react';
 import {StyleSheet} from 'react-native';
 
 const unitConversionBlockStyles = StyleSheet.create({
@@ -19,14 +18,22 @@ const unitConversionBlockStyles = StyleSheet.create({
     input_box: {
         borderWidth: 1.5,
         marginTop: 10,
-        marginRight: 10,
+        marginRight: 8,
         marginBottom: '10%'
     },
     output_box: {
+        color: '#303236',
         borderWidth: 1,
         marginTop: 10,
         marginRight: 10,
         marginBottom: '10%'
+    },
+    picker_Style: {
+        flex: 0.5,
+        borderWidth: 1.5,
+        marginTop: 10,
+        marginRight: 10,
+        marginBottom: '10%',
     }
 })
 

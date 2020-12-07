@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import Navigator from './src/routes/HomeStack';
+import ApplicationStack from './src/routes/ApplicationStack';
 
 class App extends Component {
   render() {
     return (
-      <Navigator />
+      <ApplicationStack />
     );
   }
 }

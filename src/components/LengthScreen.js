@@ -1,47 +1,27 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
-import ButtonStyles from '../styles/ButtonStyles';
+import {View, ScrollView} from 'react-native';
 import Header from './Header';
-import LengthUnitConversionBlock from './LengthUnitConversionBlock';
+import UnitConversionBlock from './UnitConversionBlock';
+import UnitButtons from './UnitButtons';
 
-export default class TemperatureScreen extends Component {
+
+export default class LengthScreen extends Component {
     constructor(props) {
         super(props)
     }
-    render() {
-    return (
-        <View>
-            <ScrollView>
-                <Header/>
-                <View>
-                    <Text style = {ButtonStyles.chooseType}>CHOOSE TYPE</Text>
-                </View>     
-                <View style = {{flexDirection: 'row'}}>
-                    <TouchableOpacity 
-                        style = {[ButtonStyles.lengthStyle, ButtonStyles.normalStyle]}    
-                    >
-                        <Image source = {require('../assets/scaleActive.png')} style = {ButtonStyles.imagestyle}/>
-                        <Text style = {ButtonStyles.LengthtextStyle}>Length</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity 
-                        style = {ButtonStyles.buttonStyle}
-                        onPress = {() => this.props.navigation.navigate('Temperature')}
-                    >
-                        <Image source = {require('../assets/temp.png')} style = {ButtonStyles.imagestyle}/>
-                        <Text>Temperature</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity 
-                        style = {ButtonStyles.buttonStyle}
-                        onPress = {() => this.props.navigation.navigate('Volume')}
-                    >
-                        <Image source = {require('../assets/volume.png')} style = {ButtonStyles.imagestyle}/>
-                        <Text>Volume</Text>
-                    </TouchableOpacity>
-                </View>
-                <LengthUnitConversionBlock/>
-            </ScrollView>
-        </View>
-    )
-    }
     
+    render() {
+        return (
+            <View>
+                <ScrollView>
+                    <Header/>
+                    <UnitButtons
+                        navigation = {this.props.navigation}
+                        type = 'Length'
+                    />
+                    <UnitConversionBlock type = 'Length'/>
+                </ScrollView>
+            </View>
+        )
+    }
 }
