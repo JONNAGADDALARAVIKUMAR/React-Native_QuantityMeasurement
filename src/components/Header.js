@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet
-} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 
 export default class Header extends Component {
     render() {
@@ -8,10 +7,10 @@ export default class Header extends Component {
             <View style = {{height: '20%'}}>
                 <View style = {{flexDirection: 'row'}}>
                     <View style = {{flex: 1}}>
-                        <Text style = {[styles.quanment, styles.headBar]}>Quanment</Text>
+                        <Text style = {[styles.quanment, styles.head_Bar]}>Quanment</Text>
                     </View>
                     <View style = {{flex: 1}}>
-                        <Text style = {[styles.history, styles.headBar]}>History</Text>
+                        <Text style = {[styles.history, styles.head_Bar]}>History</Text>
                     </View>
                     </View>
                 <View>
@@ -24,12 +23,12 @@ export default class Header extends Component {
 
 const styles = StyleSheet.create({
     quanment: {
-        color: '#000000',
+        color: 'black',
         fontSize: 20,
     },
     history: {
         fontSize: 14, 
-        color: '#000000',
+        color: 'black',
     },
     heading: {
         backgroundColor: '#446dff',
@@ -38,8 +37,9 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center',
         fontSize: 20,
         color: '#e8ddff',
+        paddingBottom: 2,
     },
-    headBar: {
+    head_Bar: {
         fontWeight: 'bold',
         marginTop: '10%',
         marginBottom: '10%',

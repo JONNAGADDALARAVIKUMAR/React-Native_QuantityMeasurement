@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {View, ScrollView} from 'react-native';
-import 'react-native-gesture-handler';
 import Header from './Header';
 import UnitConversionBlock from './UnitConversionBlock';
 import UnitButtons from './UnitButtons';
@@ -13,8 +12,8 @@ export default class TemperatureScreen extends Component {
     render() {
         return (
             <View>
-                <ScrollView>
-                    <Header/>
+                <Header/>
+                <ScrollView ScrollView style = {{marginBottom: '15%', marginTop: '10%'}}>
                     <UnitButtons
                         navigation = {this.props.navigation}
                         type = 'Temperature'

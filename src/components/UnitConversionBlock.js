@@ -2,31 +2,30 @@ import React, {Component} from 'react';
 import {View, Text, TextInput,} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import unitConversionBlockStyles from '../styles/unitConversionBlockStyles'
+import UnitDataController from 'C:/Users/Admin/javaScript/UpdatedQuantityMeasurement/UnitDataController.js';
 
 export default class UnitConversionBlock extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            lengthUnits: UnitDataController.lengthUnits,
+            lengthValues: UnitDataController.lengthValues,
+            tempertureUnits: UnitDataController.tempertureUnits,
+            tempertureValues: UnitDataController.tempertureValues,
+            volumeUnits: UnitDataController.volumeUnits,
+            volumeValues: UnitDataController.volumeValues,
+            selectedInputUnit: 0,
+            selectedOutputUnit: 0,
+            enteredValue: '',
+            outputValue : '',
+        } 
     }
-
-    state = {
-        lengthUnits: ['Milli Meter', 'Centi Meter', 'Meter', 'Kilo Meter', 'Inch', 'Foot', 'Yard'],
-        lengthValues: ['1', '10', '1000', '1000000', '25.4', '304.8', '914.4'],
-        tempertureUnits: ['Celsius', 'FahrenHeit', 'Kelvin'],
-        tempertureValues: ['C', 'F', 'K'],
-        volumeUnits: ['Milli Litre', 'Litre', 'Gallon', 'Cubic Meter', 'Cubic Centi Meter', 'Cubic Mill Miter'],
-        volumeValues: ['1', '1000', '3785', '1000000', '1.0', '0.001'],
-        selectedInputUnit: 0,
-        selectedOutputUnit: 0,
-        enteredValue: '0',
-        outputValue : '',
-    } 
 
     inputUnitHandler = async (selectedInputUnitType) => {
         await this.setState({
             selectedInputUnit: selectedInputUnitType
         })
         this.inputValueHandler(this.state.enteredValue)
-
     }
 
     outputUnitHandler = async (selectedOutputUnitType) => {
@@ -40,6 +39,7 @@ export default class UnitConversionBlock extends Component {
         await this.setState({
             enteredValue: value
         })
+
         if(this.props.type == 'Length') {
             var inputUnit = parseFloat(this.state.selectedInputUnit);
             var outputUnit = parseFloat(this.state.selectedOutputUnit);
@@ -99,10 +99,9 @@ export default class UnitConversionBlock extends Component {
                 })
         }
          
-        var outputValueToFormat = this.state.outputValue;
-        this.setState({
-            outputValue: Number(Math.round(outputValueToFormat+'e4')+'e-4')
-        })
+        this.setState((state) => ({
+            outputValue: Number(Math.round(state.outputValue+'e4')+'e-4')
+        }))
     }
 
     render() {
@@ -130,7 +129,7 @@ export default class UnitConversionBlock extends Component {
                     </View>
                     <TextInput 
                         placeholder = {'Enter Input'}
-                        placeholderTextColor = '#303236'
+                        placeholderTextColor = '#646269'
                         style = {[unitConversionBlockStyles.units_Box,
                                   unitConversionBlockStyles.input_box]}
                         onChangeText = {(value) => this.inputValueHandler(value)}
@@ -158,8 +157,9 @@ export default class UnitConversionBlock extends Component {
                         </Picker>
                     </View>
                     <TextInput 
-                        placeholder = {'Output'}
                         value = {(this.state.outputValue.toString() != 'NaN') ? this.state.outputValue.toString() : '0'}
+                        placeholder = {'Output'}
+                        placeholderTextColor = '#646269'
                         editable = {false}
                         style = {[unitConversionBlockStyles.units_Box,
                                   unitConversionBlockStyles.output_box]}

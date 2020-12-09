@@ -58,7 +58,6 @@ const ButtonStyles = StyleSheet.create({
         fontSize: 20,
         marginLeft: 10,
         marginBottom: 5, 
-        marginTop: '10%',
         color: '#323436',
     }
 })

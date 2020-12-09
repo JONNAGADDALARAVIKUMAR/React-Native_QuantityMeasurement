@@ -11,6 +11,7 @@ const unitConversionBlockStyles = StyleSheet.create({
     },
     units_Box: {
         flex: 0.7,
+        borderRadius: 15,
     },
     value_Box: {
         flex: 1,
@@ -22,8 +23,9 @@ const unitConversionBlockStyles = StyleSheet.create({
         marginBottom: '10%'
     },
     output_box: {
-        color: '#303236',
+        color: '#646269',
         borderWidth: 1,
+        borderColor: '#69666e',
         marginTop: 10,
         marginRight: 10,
         marginBottom: '10%'
@@ -34,6 +36,7 @@ const unitConversionBlockStyles = StyleSheet.create({
         marginTop: 10,
         marginRight: 10,
         marginBottom: '10%',
+        borderRadius: 15,
     }
 })
 

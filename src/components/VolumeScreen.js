@@ -11,16 +11,16 @@ export default class VolumeScreen extends Component {
 
     render() {
         return (
-        <View>
-            <ScrollView>
+            <View>
                 <Header/>
-                <UnitButtons 
-                    navigation = {this.props.navigation}
-                    type = 'Volume'
-                />
-                <UnitConversionBlock type = 'Volume'/>
-            </ScrollView>
-        </View>
+                <ScrollView ScrollView style = {{marginBottom: '15%', marginTop: '10%'}}>
+                    <UnitButtons 
+                        navigation = {this.props.navigation}
+                        type = 'Volume'
+                    />
+                    <UnitConversionBlock type = 'Volume'/>
+                </ScrollView>
+            </View>
         )   
     }
 }
